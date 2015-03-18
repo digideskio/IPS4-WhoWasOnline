@@ -33,7 +33,7 @@ class _whowasonline extends \IPS\Widget
 	/**
 	 * @brief	App
 	 */
-	public $app = 'core';
+	public $app = '';
 		
 	/**
 	 * @brief	Plugin
@@ -49,7 +49,7 @@ class _whowasonline extends \IPS\Widget
 	{
 		parent::init();
 		// Use this to perform any set up and to assign a template that is not in the following format:
-		$this->template( array( \IPS\Theme::i()->getTemplate( 'plugins', $this->app, 'global' ), $this->key ) );
+		$this->template( array( \IPS\Theme::i()->getTemplate( 'plugins', 'core', 'global' ), $this->key ) );
 	}
 	
 	/**
