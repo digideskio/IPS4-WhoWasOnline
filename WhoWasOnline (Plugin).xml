@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin name="Who Was Online" version_long="10000" version_human="1.0.0" author="Sijad aka Mr.Wosi" website="http://skinod..com" update_check="http://skinod.com/updatechk/sodwhowasonline"><hooks/><widgets><widget key="whowasonline" class="\IPS\Widget" restrict="sidebar,cms" default_area="" allow_reuse="1" menu_style="menu" embeddable="1"><![CDATA[<?php
+<plugin name="Who Was Online" version_long="10001" version_human="1.0.1" author="Sijad aka Mr.Wosi" website="http://skinod.com" update_check="http://skinod.com/updatechk/sodwhowasonline"><hooks/><widgets><widget key="whowasonline" class="\IPS\Widget" restrict="sidebar,cms" default_area="footer" allow_reuse="1" menu_style="menu" embeddable="1"><![CDATA[<?php
 /**
  * @brief		whowasonline Widget
  * @author		<a href='http://www.invisionpower.com'>Invision Power Services, Inc.</a>
@@ -7,7 +7,7 @@
  * @license		http://www.invisionpower.com/legal/standards/
  * @package		IPS Social Suite
  * @subpackage	sodWhoWasOnline
- * @since		09 Mar 2015
+ * @since		25 Jun 2015
  * @version		SVN_VERSION_NUMBER
  */
 
@@ -47,9 +47,8 @@ class _whowasonline extends \IPS\Widget
 	 */ 
 	public function init()
 	{
-		parent::init();
-		// Use this to perform any set up and to assign a template that is not in the following format:
 		$this->template( array( \IPS\Theme::i()->getTemplate( 'plugins', 'core', 'global' ), $this->key ) );
+		parent::init();
 	}
 	
 	/**
@@ -74,8 +73,8 @@ class _whowasonline extends \IPS\Widget
 		$form->add( new \IPS\Helpers\Form\Radio( 'who_was_online_order_sort', isset( $this->configuration['who_was_online_order_sort'] ) ? $this->configuration['who_was_online_order_sort'] : 'desc', TRUE, array( 'options' => array('desc' => 'who_was_online_desc', 'asc' => 'who_was_online_asc') ) ) );
 
  		return $form;
- 	}
-
+ 	} 
+ 	
  	 /**
  	 * Ran before saving widget configuration
  	 *
@@ -94,9 +93,6 @@ class _whowasonline extends \IPS\Widget
 	 */
 	public function render()
 	{
-		// print_r($this->configuration);
-		// exit;
-		
 		$this->configuration['who_was_online_hours'] 				= isset($this->configuration['who_was_online_hours']) ?$this->configuration['who_was_online_hours']: 24;
 		$this->configuration['who_was_online_who_can_see'] 			= isset($this->configuration['who_was_online_who_can_see']) ?$this->configuration['who_was_online_who_can_see']: '*';
 		$this->configuration['who_was_online_max_user'] 			= isset($this->configuration['who_was_online_max_user']) ?$this->configuration['who_was_online_max_user']: '';
@@ -179,6 +175,37 @@ class ips_plugins_setup_install
 	public function step1()
 	{
 		
+
+		return TRUE;
+	}
+	
+	// You can create as many additional methods (step2, step3, etc.) as is necessary.
+	// Each step will be executed in a new HTTP request
+}]]></version><version long="10001" human="1.0.1"><![CDATA[//<?php
+
+
+/* To prevent PHP errors (extending class does not exist) revealing path */
+if ( !defined( '\IPS\SUITE_UNIQUE_KEY' ) )
+{
+	header( ( isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0' ) . ' 403 Forbidden' );
+	exit;
+}
+
+/**
+ * 1.0.1 Upgrade Code
+ */
+class ips_plugins_setup_upg_10001
+{
+	/**
+	 * ...
+	 *
+	 * @return	array	If returns TRUE, upgrader will proceed to next step. If it returns any other value, it will set this as the value of the 'extra' GET parameter and rerun this step (useful for loops)
+	 */
+	public function step1()
+	{
+		
+
+		return TRUE;
 	}
 	
 	// You can create as many additional methods (step2, step3, etc.) as is necessary.
